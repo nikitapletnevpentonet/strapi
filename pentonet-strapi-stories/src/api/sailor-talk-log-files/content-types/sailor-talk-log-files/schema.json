@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sailor_talk_log_file",
+  "info": {
+    "singularName": "sailor-talk-log-files",
+    "pluralName": "sailor-talk-log-file",
+    "displayName": "SailorTalkLogFiles"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "uploadDate": {
+      "type": "datetime",
+      "required": true,
+      "unique": true
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "logFile": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

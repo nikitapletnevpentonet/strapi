@@ -362,39 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiStoryStory extends Schema.CollectionType {
-  collectionName: 'stories';
-  info: {
-    singularName: 'story';
-    pluralName: 'stories';
-    displayName: 'Stories';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required & Attribute.Unique;
-    subtitle: Attribute.String;
-    description: Attribute.Text & Attribute.Required;
-    linkedInLink: Attribute.String & Attribute.Unique;
-    picture: Attribute.Media & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::story.story',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::story.story',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -710,6 +677,72 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiSailorTalkLogFilesSailorTalkLogFiles
+  extends Schema.CollectionType {
+  collectionName: 'sailor_talk_log_file';
+  info: {
+    singularName: 'sailor-talk-log-files';
+    pluralName: 'sailor-talk-log-file';
+    displayName: 'SailorTalkLogFiles';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    uploadDate: Attribute.DateTime & Attribute.Required & Attribute.Unique;
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    logFile: Attribute.Media & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::sailor-talk-log-files.sailor-talk-log-files',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::sailor-talk-log-files.sailor-talk-log-files',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiStoryStory extends Schema.CollectionType {
+  collectionName: 'stories';
+  info: {
+    singularName: 'story';
+    pluralName: 'stories';
+    displayName: 'Stories';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    subtitle: Attribute.String;
+    description: Attribute.Text & Attribute.Required;
+    linkedInLink: Attribute.String & Attribute.Unique;
+    picture: Attribute.Media & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::story.story',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::story.story',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -720,13 +753,14 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::story.story': ApiStoryStory;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::sailor-talk-log-files.sailor-talk-log-files': ApiSailorTalkLogFilesSailorTalkLogFiles;
+      'api::story.story': ApiStoryStory;
     }
   }
 }
